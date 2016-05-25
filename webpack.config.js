@@ -1,34 +1,26 @@
-const path = require('path')
-
-console.log(process.env.NODE_ENV)
+var path = require('path');
+var webpack = require('webpack');
 
 module.exports = {
-  entry: ['babel-polyfill', './components/index.jsx'],
+  devtool: 'eval',
+  entry: [
+    'webpack-dev-server/client?http://localhost:3000',
+    'webpack/hot/only-dev-server',
+    './src/index'
+  ],
   output: {
-    filename: 'popup-bundle.js',
-    path: '../../chrome_release/'
+    path: path.join(__dirname, 'dist'),
+    filename: 'bundle.js',
+    publicPath: '/static/'
   },
+  plugins: [
+    new webpack.HotModuleReplacementPlugin()
+  ],
   module: {
-    loaders: [
-      {
-        test: /.jsx?$/,
-        loader: 'babel-loader',
-        exclude: path.resolve(__dirname, "node_modules"),
-        query: {
-          presets: ['es2015','stage-3',  'react' ]
-        }
-      }
-    ]
-  },
-  externals: {
-    //don't bundle the 'react' npm package with our bundle.js
-    //but get it from a global 'React' variable
-//    'react': 'React'
-  },
-  resolve: {
-    extensions: ['', '.js', '.jsx'],
-    alias: {
-      config: path.join(__dirname, 'config', process.env.NODE_ENV)
-    }
+    loaders: [{
+      test: /\.js$/,
+      loaders: ['react-hot', 'babel'],
+      include: path.join(__dirname, 'src')
+    }]
   }
-}
+};
