@@ -7,14 +7,7 @@ import {
   NotFound
 } from './containers';
 
-export default (store) => {
-  /**
-   * Please keep routes in alphabetical order
-   */
-  return (
-    <Route path="/" component={App}>
-      <IndexRoute component={Home}/>
-      <Route path="*" component={NotFound} status={404} />
-    </Route>
-  );
-};
+export default (
+  <Route path="/" component={Home}>
+  </Route>
+);

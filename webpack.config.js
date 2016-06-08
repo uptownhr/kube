@@ -4,9 +4,8 @@ var webpack = require('webpack');
 module.exports = {
   devtool: 'eval',
   entry: [
-    'webpack-dev-server/client?http://localhost:3000',
-    'webpack/hot/only-dev-server',
-    './src/index'
+    'webpack-hot-middleware/client',
+    './src/index.js'
   ],
   output: {
     path: path.join(__dirname, 'dist'),
@@ -19,12 +18,11 @@ module.exports = {
         test: /\.js$/,
         loaders: ['react-hot', 'babel'],
         include: path.join(__dirname, 'src')
-      },{
-        test: /\.scss$/,
-        loaders: ["style", "css", "sass"]
       },
+      { test: /\.scss$/, loaders: ["style", "css", "sass"] },
       { test: /\.css$/, loader: "style!css" },
-      { test: /\.png$/, loader: 'url-loader?limit=10240' }
+      { test: /\.png|svg|jpg$/, loader: 'url-loader?limit=1024' },
+      { test: /\.(otf|eot|ttf|woff|woff2)$/, loader: 'file' }
     ]
   },
   plugins: [
