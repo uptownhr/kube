@@ -21,7 +21,11 @@ export default class Home extends Component {
     console.log('render')
     // require the logo image both from client and server
     return (
-      <div> {this.state.name}z</div>
+      <div onClick={this.click}> {this.state.name}tusdfsdfdsf</div>
     );
+  }
+
+  click(){
+    console.log('s')
   }
 }
