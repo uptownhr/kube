@@ -11,9 +11,9 @@ const reaxMiddleware =  (req,res,next) => {
       /*
       handle react route cache
        */
-      let id = require.resolve('./dist/routes')
+      let id = require.resolve('../dist/routes')
       if (id) delete require.cache[id]
-      const routes = require('./dist/routes')
+      const routes = require('../dist/routes')
 
       match({routes,location:req.url}, (err, redirect, renderProps) => {
         renderProps.location.state = state

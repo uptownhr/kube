@@ -1,10 +1,10 @@
 const webpackDevMiddleware = require('webpack-dev-middleware')
 const hotMiddleware = require('webpack-hot-middleware')
 const webpack = require('webpack')
-const config = require('./webpack.config')
+const config = require('../webpack.config')
 
 //for express actions
-const expressConfig = require('./webpack.config.server')
+const expressConfig = require('../webpack.config.server')
 const expressCompiler = new webpack(expressConfig)
 
 expressCompiler.watch({
@@ -15,11 +15,7 @@ expressCompiler.watch({
 })
 
 
-const compiler = new webpack(config, function(err,stats){
-  let data = stats.toJson({chunk:true})
-  console.log(data.modules[253])
-  console.log('wtfzz')
-})
+const compiler = new webpack(config)
 
 const options = {
   publicPath: config.output.publicPath,

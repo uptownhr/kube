@@ -1,7 +1,29 @@
+"use strict"
+const fs = require('fs'),
+  p = require('path')
+
+/**
+ * load all files in given path directory
+ * @param path
+ * @returns {*}
+ */
+exports.generateDirectoryModules = function(path){
+  return fs.readdirSync(path)
+    .filter( (file) => file != 'index.js' )
+    .filter( (file) => p.extname(file)  == '.js')
+    .reduce( (result, file) => {
+      let name = file.replace('.js', '')
+
+      result[name] = require( path + "/" + file)
+
+      return result
+    }, {})
+}
+
 /**
  * Removes a module from the cache
  */
-const uncache = function (moduleName) {
+exports.uncache = function (moduleName) {
   // Run over the cache looking for the files
   // loaded by the specified module name
   searchCache(moduleName, function (mod) {
@@ -42,7 +64,3 @@ const searchCache = function (moduleName, callback) {
     })(mod);
   }
 };
-
-module.exports = {
-  uncache
-}
