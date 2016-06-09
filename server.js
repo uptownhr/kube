@@ -3,6 +3,18 @@ const hotMiddleware = require('webpack-hot-middleware')
 const webpack = require('webpack')
 const config = require('./webpack.config')
 
+//for express actions
+const expressConfig = require('./webpack.config.server')
+const expressCompiler = new webpack(expressConfig)
+
+expressCompiler.watch({
+  aggregateTimeout: 300
+}, (err, stats) => {
+  if(err) return console.log(err)
+  console.log('compiled express watch')
+})
+
+
 const compiler = new webpack(config, function(err,stats){
   let data = stats.toJson({chunk:true})
   console.log(data.modules[253])

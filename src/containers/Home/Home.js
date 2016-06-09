@@ -26,7 +26,7 @@ export default class Home extends Component {
       <div onClick={this.click}>
         <Row>
           <Col md={1}>
-            33
+            333
             </Col>
           </Row>
         {this.state.name}
