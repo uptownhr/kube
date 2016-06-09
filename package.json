@@ -14,7 +14,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --ignore src/ index.js",
+    "dev": "nodemon --ignore src/ --ignore dist/ index.js",
     "prod": "NODE_ENV=prod webpack --progress --colos --watch"
   },
   "author": "",

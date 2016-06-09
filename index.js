@@ -3,15 +3,25 @@ const express = require('express'),
   app = express(),
   { server, hot } = require('./server')
 
-const action = require('./dist/action')
+
 
 app.use( server, hot )
+
+app.use( (req, res, next) => {
+  let id = require.resolve('./dist/action')
+  console.log('id',id)
+
+  if (id) delete require.cache[id]
+
+  //if(id) uncache('./dist/action')
+
+  const action = require('./dist/action')
+  action(req,res,next)
+})
 
 const React = require('react'),
   ReactDOMServer = require('react-dom/server'),
   {match, RouterContext} = require('react-router')
-
-app.get( '/', action )
 
 
 

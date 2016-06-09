@@ -5,7 +5,7 @@ import {Row, Col} from 'react-bootstrap';
 export default class Home extends Component {
   constructor(){
     super()
-    this.state = {name: 'testing12'}
+    this.state = {name: 'testing143342'}
   }
   componentWillMount(){
     let img = require('./logo.png')
@@ -26,10 +26,10 @@ export default class Home extends Component {
       <div onClick={this.click}>
         <Row>
           <Col md={1}>
-            asdfasdfasdf
+            33
             </Col>
           </Row>
-        {this.state.name}tusdfsdfdsf
+        {this.state.name}
         {this.state.img ? <img src={this.state.img} /> : ''}
       </div>
     );
