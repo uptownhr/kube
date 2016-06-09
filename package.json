@@ -1,11 +1,10 @@
 {
-  "name": "popup",
+  "name": "hackable-reax",
   "version": "1.0.0",
   "description": "",
-  "main": "popup.js",
+  "main": "reax/reax-middleware.js",
   "dependencies": {
     "express": "^4.13.4",
-    "mongoose": "^4.4.20",
     "react": "^15.1.0",
     "react-bootstrap": "^0.29.4",
     "react-dom": "^15.1.0",
