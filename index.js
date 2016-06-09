@@ -1,4 +1,4 @@
-const {app, mongoose} = require('./reax/bootstrap'),
+const {app, mongoose} = require('./bootstrap'),
   controllers = require('./controllers')
 
 mongoose.connect("mongodb://localhost:27017/preax")

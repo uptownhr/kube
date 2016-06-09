@@ -1,10 +1,10 @@
 const webpackDevMiddleware = require('webpack-dev-middleware')
 const hotMiddleware = require('webpack-hot-middleware')
 const webpack = require('webpack')
-const config = require('../webpack.config')
+const config = require('./webpack.config')
 
 //for express actions
-const expressConfig = require('../webpack.config.server')
+const expressConfig = require('./webpack.config.server')
 const expressCompiler = new webpack(expressConfig)
 
 expressCompiler.watch({

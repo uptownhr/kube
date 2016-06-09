@@ -16,8 +16,17 @@ module.exports = {
     loaders: [
       {
         test: /\.js$/,
-        loaders: ['react-hot', 'babel'],
-        include: path.join(__dirname, 'src')
+        loader: 'react-hot',
+        include: path.join(__dirname, '../src')
+      },
+      {
+        test: /\.js$/,
+        loader: 'babel',
+        include: path.join(__dirname, '../src'),
+        query: {
+          "presets": ["react", "es2015", "stage-0"],
+          "plugins": ["transform-decorators-legacy", "add-module-exports"]
+        }
       },
       { test: /\.scss$/, loaders: ["style", "css", "sass"] },
       { test: /\.css$/, loader: "style!css" },

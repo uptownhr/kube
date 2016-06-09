@@ -1,7 +1,7 @@
 const express = require('express'),
   app = express()
 
-require('./reax-middleware')(app)
+require('./reax/reax-middleware')(app)
 
 const mongoose = require('mongoose')
 
