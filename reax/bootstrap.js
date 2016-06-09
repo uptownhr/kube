@@ -1,7 +1,7 @@
 const express = require('express'),
-  app = express(),
-  reaxMiddleware = require('./reax-middleware'),
-  { server, hot } = require('./server')
+  app = express()
+
+require('./reax-middleware')(app)
 
 const mongoose = require('mongoose')
 
@@ -16,8 +16,6 @@ mongoose.connection.on('connected', () => {
   console.log('Mongodb connected')
 })
 
-app.use( server, hot )
-app.use( reaxMiddleware )
 
 module.exports = {
   app, mongoose

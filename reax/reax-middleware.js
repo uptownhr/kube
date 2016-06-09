@@ -1,4 +1,5 @@
 const React = require('react'),
+  {server, hot} = require('./server'),
   ReactDOMServer = require('react-dom/server'),
   {match, RouterContext} = require('react-router')
 
@@ -41,4 +42,8 @@ const reaxMiddleware =  (req,res,next) => {
   next()
 }
 
-module.exports = reaxMiddleware
+module.exports = function(app){
+  app.use(server,hot,reaxMiddleware)
+
+  return app
+}
