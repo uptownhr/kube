@@ -1,5 +1,5 @@
 # Hackable Reax
-Universal React express middleware package. 
+Universal React Express middleware package. A universal react dev environment provided through `npm install`
 
 
 ## What's included?
