@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router';
-import {Row, Col} from 'react-bootstrap';
+import {Grid, Row, Col, Button} from 'react-bootstrap';
 
 export default class Home extends Component {
   constructor(){
@@ -14,24 +13,25 @@ export default class Home extends Component {
 
   componentDidMount(){
     console.log('did mount')
-    let img = require('./logo.png')
     setTimeout(()=>{
-      this.setState({name: 'zzzzdfdfdsdfsdfsdf', img})
+      this.setState({name: 'zzzzdfdfdsdfsdfsdf'})
     }, 1000)
   }
   render() {
-
+    let img = require('./logo.png')
     // require the logo image both from client and server
     return (
-      <div onClick={this.click}>
+      <Grid>
         <Row>
-          <Col md={1}>
-           asdffdsfsdfsdf
-            </Col>
-          </Row>
-        {this.state.name}
-        {this.state.img ? <img src={this.state.img} /> : ''}
-      </div>
+          <Col xs={3}>
+            {this.state.name}
+          </Col>
+          <Col xs={5}>
+            <img src={img} />
+          </Col>
+        </Row>
+        <Button>Test</Button>
+      </Grid>
     );
   }
 

@@ -13,7 +13,7 @@ router.get('/', (req,res) => {
 
   match({routes,location:req.url}, (err, redirect, renderProps) => {
     const element = React.createElement(RouterContext, renderProps)
-    const template = `<html><body><div id='root'>${ReactDOMServer.renderToString(element)}</div><script src="http://localhost:3000/static/bundle.js"></script></body></html>`.replace(/\s+/g, ' ').trim();
+    const template = `<html><link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css"><body><div id='root'>${ReactDOMServer.renderToString(element)}</div><script src="http://localhost:3000/static/bundle.js"></script></body></html>`.replace(/\s+/g, ' ').trim();
     res.send(template)
   })
 
