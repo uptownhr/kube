@@ -7,6 +7,5 @@ import {
 } from './containers';
 
 export default (
-  <Route path="/" component={Home}>
-  </Route>
+  <Route path="/" component={Home} />
 );

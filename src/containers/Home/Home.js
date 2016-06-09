@@ -2,24 +2,14 @@ import React, { Component } from 'react';
 import {Grid, Row, Col, Button} from 'react-bootstrap';
 
 export default class Home extends Component {
-  constructor(){
-    super()
-    this.state = {name: 'testing143342'}
-  }
-  componentWillMount(){
-    let img = require('./logo.png')
-    console.log('will mount')
+  constructor(props){
+    super(props)
+    this.state = props.location.state
   }
 
-  componentDidMount(){
-    console.log('did mount')
-    setTimeout(()=>{
-      this.setState({name: 'zzzzdfdfdsdfsdfsdf'})
-    }, 1000)
-  }
   render() {
     let img = require('./logo.png')
-    // require the logo image both from client and server
+
     return (
       <Grid>
         <Row>
@@ -27,15 +17,15 @@ export default class Home extends Component {
             {this.state.name}
           </Col>
           <Col xs={5}>
-            <img src={img} />
+            <img style={{width: '100%'}} src={img} />
           </Col>
         </Row>
-        <Button>Test</Button>
+        <Button onClick={this.click.bind(this)}>Change state</Button>
       </Grid>
     );
   }
 
   click(){
-    console.log('s')
+    this.setState({name: 'changed button'})
   }
 }
