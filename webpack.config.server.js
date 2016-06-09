@@ -15,14 +15,14 @@ fs.readdirSync('node_modules')
 module.exports = {
   devtool: 'eval',
   entry: [
-    './action.js'
+    './src/routes'
   ],
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'action.js',
+    filename: 'routes.js',
     publicPath: '/static/',
     libraryTarget: 'commonjs2',
-    library: 'action'
+    library: 'routes'
   },
   module: {
     loaders: [

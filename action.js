@@ -6,7 +6,10 @@ const React = require('react'),
   {match, RouterContext} = require('react-router')
 
 router.get('/', (req,res) => {
-  const routes = require('./src/routes')
+  let id = require.resolve('./dist/routes')
+  if (id) delete require.cache[id]
+
+  const routes = require('./dist/routes')
 
   match({routes,location:req.url}, (err, redirect, renderProps) => {
     const element = React.createElement(RouterContext, renderProps)
