@@ -5,6 +5,7 @@
   "main": "popup.js",
   "dependencies": {
     "express": "^4.13.4",
+    "mongoose": "^4.4.20",
     "react": "^15.1.0",
     "react-bootstrap": "^0.29.4",
     "react-dom": "^15.1.0",
@@ -14,8 +15,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --ignore src/ --ignore dist/ index.js",
-    "prod": "NODE_ENV=prod webpack --progress --colos --watch"
+    "dev": "nodemon --ignore src/ --ignore dist/ index.js"
   },
   "author": "",
   "license": "ISC",
