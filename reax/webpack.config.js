@@ -1,6 +1,8 @@
 var path = require('path');
 var webpack = require('webpack');
 
+const app_root = path.dirname(require.main.filename)
+
 module.exports = {
   devtool: 'eval',
   entry: [
@@ -17,12 +19,12 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'react-hot',
-        include: path.join(__dirname, '../src')
+        include: app_root + '/src'
       },
       {
         test: /\.js$/,
         loader: 'babel',
-        include: path.join(__dirname, '../src'),
+        include: app_root +  '/src',
         query: {
           "presets": ["react", "es2015", "stage-0"],
           "plugins": ["transform-decorators-legacy", "add-module-exports"]

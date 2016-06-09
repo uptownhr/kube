@@ -3,7 +3,6 @@ const React = require('react'),
   ReactDOMServer = require('react-dom/server'),
   {match, RouterContext} = require('react-router')
 
-
 const reaxMiddleware =  (req,res,next) => {
   res.reax = {
     render(state){
