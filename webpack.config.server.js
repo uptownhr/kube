@@ -1,22 +1,34 @@
 var path = require('path');
+var fs = require('fs');
 var webpack = require('webpack');
+
+var nodeModules = {};
+fs.readdirSync('node_modules')
+  .filter(function(x) {
+    return ['.bin'].indexOf(x) === -1;
+  })
+  .forEach(function(mod) {
+    nodeModules[mod] = 'commonjs ' + mod;
+  });
+
 
 module.exports = {
   devtool: 'eval',
   entry: [
-    'webpack-hot-middleware/client',
-    './src/index.js'
+    './action.js'
   ],
   output: {
     path: path.join(__dirname, 'dist'),
-    filename: 'bundle.js',
-    publicPath: '/static/'
+    filename: 'action.js',
+    publicPath: '/static/',
+    libraryTarget: 'commonjs2',
+    library: 'action'
   },
   module: {
     loaders: [
       {
         test: /\.js$/,
-        loaders: ['react-hot', 'babel'],
+        loaders: [ 'babel'],
         include: path.join(__dirname, 'src')
       },
       { test: /\.scss$/, loaders: ["style", "css", "sass"] },
@@ -26,11 +38,6 @@ module.exports = {
     ]
   },
   plugins: [
-    new webpack.HotModuleReplacementPlugin(),
-    new webpack.DefinePlugin({
-      __CLIENT__: true,
-      __SERVER__: false,
-      __DEVELOPMENT__: true
-    })
   ],
+  externals: nodeModules
 };
