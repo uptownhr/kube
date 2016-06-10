@@ -1,4 +1,4 @@
-# Hackable Reax
+# kube
 Universal React Express middleware package. A universal react dev environment provided through `npm install`
 
 
@@ -20,14 +20,14 @@ Webpack module loaders are awesome and brings lot of value to your react develop
 
 The repo currently contains a boilerplate demo. To try,
 
-1. git clone git@github.com/uptownhr/hackable-reax
+1. git clone git@github.com/uptownhr/kube
 2. npm install
 3. npm run dev
 
-## hackable-reax on your project
+## kube on your project
 
 ### Install
-`npm install --save-dev hackable-reax`
+`npm install --save-dev kube`
 
 
 ### Express App - Server side rendering
@@ -40,13 +40,13 @@ const app = express()
 Loads middleware and provides
 1. the webpack dev server
 2. the webpack hot moldule reloader
-3. res.reax.render
+3. res.kube.render
 */
-require('hackable-reax')(app)
+require('kube')(app)
 
 app.get('/', function(req,res){
   let state = { ssr: 'server state' }
-  res.reax.render(state)
+  res.kube.render(state)
 })
 
 ```
