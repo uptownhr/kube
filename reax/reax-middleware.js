@@ -25,19 +25,17 @@ const reaxMiddleware =  (req,res,next) => {
         const element = React.createElement(RouterContext, renderProps)
 
         const template = `
-        <html>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
-        <link rel="stylesheet" href="/styles.css">
-        <script>
-        var state = ${JSON.stringify(state)}
-        </script>
-        <body>
-        <div id='root'>${ReactDOMServer.renderToString(element)}</div>
-        <script src="http://localhost:3000/static/bundle.js"></script>
-        </body>
-        </html>`
-          .replace(/\s+/g, ' ')
-          .trim();
+<html>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+<link rel="stylesheet" href="/styles.css">
+<script>
+var state = ${JSON.stringify(state)}
+</script>
+<body>
+<div id='root'>${ReactDOMServer.renderToString(element)}</div>
+<script src="http://localhost:3000/static/bundle.js"></script>
+</body>
+</html>`
 
         res.send(template)
       })
