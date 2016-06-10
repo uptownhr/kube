@@ -11,15 +11,15 @@ fs.readdirSync('node_modules')
     nodeModules[mod] = 'commonjs ' + mod;
   });
 
-const app_root = path.dirname(require.main.filename) + 'dist'
+const app_root = path.dirname(require.main.filename)
 
 module.exports = {
   devtool: 'eval',
   entry: [
-    path.join(__dirname, '../src/routes')
+    app_root + '/src/routes'
   ],
   output: {
-    path: path.dirname(require.main.filename) + 'dist',
+    path: app_root + '/dist',
     filename: 'routes.js',
     publicPath: '/static/',
     libraryTarget: 'commonjs2',
@@ -30,7 +30,7 @@ module.exports = {
       {
         test: /\.js$/,
         loader: 'babel',
-        include: app_root + '../src',
+        include: app_root + '/src',
         query: {
           "presets": ["react", "es2015", "stage-0"],
           "plugins": ["transform-decorators-legacy", "add-module-exports"]

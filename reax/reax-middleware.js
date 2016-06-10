@@ -1,7 +1,10 @@
 const React = require('react'),
   {server, hot} = require('./server'),
   ReactDOMServer = require('react-dom/server'),
-  {match, RouterContext} = require('react-router')
+  {match, RouterContext} = require('react-router'),
+  path = require('path')
+
+const app_root = path.dirname(require.main.filename)
 
 const reaxMiddleware =  (req,res,next) => {
   res.reax = {
@@ -11,9 +14,9 @@ const reaxMiddleware =  (req,res,next) => {
       /*
       handle react route cache
        */
-      let id = require.resolve('./dist/routes')
+      let id = require.resolve( app_root + '/dist/routes')
       if (id) delete require.cache[id]
-      const routes = require('./dist/routes')
+      const routes = require( app_root + '/dist/routes')
 
       match({routes,location:req.url}, (err, redirect, renderProps) => {
         renderProps.location.state = state
