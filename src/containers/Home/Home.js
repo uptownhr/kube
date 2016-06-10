@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import {Grid, Row, Col, Button} from 'react-bootstrap';
+import './home.css'
 
 export default class Home extends Component {
   constructor(props){
@@ -9,7 +10,6 @@ export default class Home extends Component {
 
   render() {
     let img = require('./logo.png')
-
     return (
       <Grid>
         <Row>

@@ -11,6 +11,8 @@ fs.readdirSync('node_modules')
     nodeModules[mod] = 'commonjs ' + mod;
   });
 
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
+
 const app_root = path.dirname(require.main.filename)
 
 module.exports = {
@@ -36,13 +38,13 @@ module.exports = {
           "plugins": ["transform-decorators-legacy", "add-module-exports"]
         }
       },
-      { test: /\.scss$/, loaders: ["style", "css", "sass"] },
-      { test: /\.css$/, loader: "style!css" },
+      { test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader") },
       { test: /\.png|svg|jpg$/, loader: 'url-loader?limit=1024' },
       { test: /\.(otf|eot|ttf|woff|woff2)$/, loader: 'file' }
     ]
   },
   plugins: [
+    new ExtractTextPlugin("styles.css")
   ],
   externals: nodeModules
 };

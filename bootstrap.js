@@ -5,8 +5,6 @@ require('./reax/reax-middleware')(app)
 
 const mongoose = require('mongoose')
 
-
-
 mongoose.connection.on('error', () => {
   console.log('Mongodb connection error')
   process.exit(1)

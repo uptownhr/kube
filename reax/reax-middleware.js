@@ -2,7 +2,8 @@ const React = require('react'),
   {server, hot} = require('./server'),
   ReactDOMServer = require('react-dom/server'),
   {match, RouterContext} = require('react-router'),
-  path = require('path')
+  path = require('path'),
+  express = require('express')
 
 const app_root = path.dirname(require.main.filename)
 
@@ -26,6 +27,7 @@ const reaxMiddleware =  (req,res,next) => {
         const template = `
         <html>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/styles.css">
         <script>
         var state = ${JSON.stringify(state)}
         </script>
@@ -45,7 +47,7 @@ const reaxMiddleware =  (req,res,next) => {
 }
 
 module.exports = function(app){
-  app.use(server,hot,reaxMiddleware)
+  app.use(server,hot,reaxMiddleware, express.static(app_root + '/dist'))
 
   return app
 }
