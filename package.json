@@ -1,6 +1,6 @@
 {
   "name": "hackable-reax",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "",
   "main": "reax/reax-middleware.js",
   "dependencies": {
