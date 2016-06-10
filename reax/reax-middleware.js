@@ -10,7 +10,7 @@ const app_root = path.dirname(require.main.filename)
 const reaxMiddleware =  (req,res,next) => {
   res.reax = {
     render(state){
-      console.log('reax-ssr: rendering', req.url, state)
+      console.log('reax-ssr: rendering', req.url)
 
       /*
       handle react route cache
