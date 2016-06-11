@@ -13,7 +13,7 @@ const Fold = function (props) {
       </Jumbotron>
       <pre>
 {`
-npm install --save-dev hackable-reax
+npm install --save-dev kube
 
 // /index.js
 const express = require('express');
@@ -25,11 +25,11 @@ Loads middleware and provides
 2. the webpack hot moldule reloader
 3. res.reax.render
 */
-require('hackable-reax')(app)
+require('kube')(app)
 
 app.get('/', function(req,res){
   let state = { ssr: 'server state' }
-  res.reax.render(state)
+  res.kube.render(state)
 })
 
 `}
