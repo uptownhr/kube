@@ -1,4 +1,7 @@
-const server = require('./server'),
+const React = require('react'),
+  server = require('./server'),
+  ReactDOMServer = require('react-dom/server'),
+  {match, RouterContext} = require('react-router'),
   path = require('path'),
   express = require('express')
 
@@ -22,9 +25,9 @@ module.exports = function(app) {
 
   options = Object.assign({},kube_default,options)
 
-  const {dev, hot, ssr} = server(options)
+  const {dev, hot, ssr, asset} = server(options)
 
-  app.use(dev, hot, ssr)
+  app.use(asset, dev, hot, ssr )
 
   return app
 }

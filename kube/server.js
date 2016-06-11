@@ -3,6 +3,7 @@ const webpackDevMiddleware = require('webpack-dev-middleware')
 const hotMiddleware = require('webpack-hot-middleware')
 const kubeSSR = require('./kube-ssr-middleware')
 const webpack_config = require('../kube/webpack.config')
+const express = require('express')
 
 module.exports = function(options){
   const { client_config, server_config } = webpack_config(options)
@@ -27,7 +28,8 @@ module.exports = function(options){
   return {
     dev: webpackDevMiddleware(client_compiler, client_options),
     hot: hotMiddleware(client_compiler),
-    ssr: kubeSSR(options)
+    ssr: kubeSSR(options),
+    asset: express.static(options.kube_path + '/public')
   }
 }
 
