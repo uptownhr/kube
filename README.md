@@ -1,3 +1,5 @@
+![kube](https://cdn.rawgit.com/uptownhr/kube/master/src/containers/Home/cube.svg)
+
 # kube
 Universal React Express middleware package. A universal react dev environment provided through `npm install`
 
