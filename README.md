@@ -26,6 +26,11 @@ The repo currently contains a boilerplate demo. To try,
 2. npm install
 3. npm run dev
 
+## Use as a standalone server
+
+1. `npm install -g kube`
+2. `cd your-project-dir`
+3. `kube`
 
 ## Use as a Middleware
 `npm install --save-dev kube`
@@ -90,16 +95,6 @@ ReactDOM.render(
   document.getElementById('root')
 );
 ```
-
-
-
-
-
-## Use as a standalone server
-
-1. `npm install -g kube`
-2. `cd project-dir`
-3. `kube`
 
 
 ## Still in Alpha
