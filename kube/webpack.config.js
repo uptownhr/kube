@@ -9,7 +9,7 @@ module.exports = function(options){
   }
 }
 
-const client_config = function({kube_path,project_public_path, project_entry}){
+const client_config = function({kube_path,project_path, project_public_path, project_entry}){
   return {
     devtool: 'eval',
     entry: [
@@ -23,11 +23,15 @@ const client_config = function({kube_path,project_public_path, project_entry}){
     },
     module: {
       loaders: [
-
+        {
+          test: /\.js$/,
+          loader: 'react-hot',
+          include: project_path + '/src',
+        },
         {
           test: /\.js$/,
           loader: 'babel',
-
+          include: project_path + '/src',
           query: {
             "presets": ["react", "es2015", "stage-0"],
             "plugins": ["transform-decorators-legacy", "add-module-exports"]

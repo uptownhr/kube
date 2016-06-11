@@ -33,7 +33,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "nodemon --ignore reax/dist --ignore src/ --ignore dist/ index.js"
+    "dev": "nodemon --ignore reax/dist --ignore src/ --ignore public/ index.js"
   },
   "author": "",
   "license": "ISC",

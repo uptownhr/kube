@@ -16,7 +16,7 @@ module.exports = function(app, options={}) {
     project_entry_component: false,
     project_routes: project_path + '/src/routes.js',
     project_public_path: project_path + '/public',
-    mount: false
+    mount: true
   }
 
   options = Object.assign({},kube_default,options)

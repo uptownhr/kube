@@ -54,7 +54,9 @@ function render_layout(element, state={}) {
 <html>
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
 <link rel="stylesheet" href="/dist/styles.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.8.0/jquery.fullPage.css" />
+<script>
+window.state = ${JSON.stringify(state)}
+</script>
 <body>
 <div id='root'>${ReactDOMServer.renderToString(element)}</div>
 <script src="http://localhost:3000/dist/bundle.js"></script>

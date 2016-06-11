@@ -3,9 +3,9 @@ const express = require('express'),
 
 router.get('/', (req,res) => {
   let state = {
-    name: 'Testing SSR state'
+    name: 'Kube'
   }
-  console.log('rendering at home')
+
   res.kube.render(state)
 })
 
