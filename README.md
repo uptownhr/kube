@@ -1,11 +1,11 @@
-![kube](https://cdn.rawgit.com/uptownhr/kube/master/src/containers/Home/cube.svg)
+![Kube](https://cdn.rawgit.com/uptownhr/kube/master/src/containers/Home/cube.svg)
 
-# kube
+# Kube
 Universal React Express middleware package. A universal react dev environment provided through `npm install`
 
 
 ## What's included?
-Reax comes with with a middleware that will,
+Kube comes with with a middleware that will,
 
 1. render your components `react-router/routes` component serverside
 2. webpack dev server
@@ -15,18 +15,16 @@ Reax comes with with a middleware that will,
 ## Webpack module loaders for the server
 Webpack module loaders are awesome and brings lot of value to your react development. You can now compose a package with all it's depedencies together. However, problems rise when you attempt to use module loaders for server side rendering purposes. Normal implementations of SSR uses the React-DOMServer to render a component to string. When the DOMServer attempts to require in a file(like an image) normally handled by a webpack loader, it will error out. Node's require expects all loaded files to be a JSON. 
  
- Using Reax, components rendered from the server are also prebuilt using webpack. Meaning all the module loaders have parsed through the require statements already. This results in a clean translation between client/server, allowing you to easily use module loaders on react universally. 
+ Using Kube, components rendered from the server are also prebuilt using webpack. Meaning all the module loaders have parsed through the require statements already. This results in a clean translation between client/server, allowing you to easily use module loaders on react universally. 
 
 
-## hackable-reax boilderplate
+## Kube boilderplate
 
 The repo currently contains a boilerplate demo. To try,
 
 1. git clone git@github.com/uptownhr/kube
 2. npm install
 3. npm run dev
-
-## kube on your project
 
 
 ## Use as a Middleware
@@ -50,11 +48,11 @@ app.get('/', function(req,res){
   let state = { ssr: 'server state' }
   res.kube.render(state)
 })
-
 ```
 
 ### React Routes
-```js
+
+```
 // /src/routes.js
 import React from 'react';
 import {IndexRoute, Route} from 'react-router';
@@ -66,11 +64,11 @@ const Home = function(props){
 export default (
   <Route path="/" component={Home} />
 );
-
 ```
 
 ### Browser App - Client resuming react components
-```js
+
+```
 // /src/index.js
 import React from 'react';
 import ReactDOM from 'react-dom';
@@ -93,15 +91,23 @@ ReactDOM.render(
 );
 ```
 
+
+
+
+
 ## Use as a standalone server
+
 1. `npm install -g kube`
 2. `cd project-dir`
 3. `kube`
 
+
 ## Still in Alpha
 Currently, Reax is still in heavy development and being ironed out. There are many places for improvement to add flexibility and configuration. In the current stage there are some strong dependencies the app requires. Until configuration api end points are created, please keep the following in mind.
 
+
 Some form of the 3 files mentioned above need to exist. 
+
 1. `/index/js`: is flexible but needs to load in the hackable-reax middleware
 2. `/src/routes.js`: `res.reax.render` depends on `react-router/routes` to automatically create your components per a given url. This file must currently exist at `/src/routes.js`
 3. `/src/index.js`: this is the entry point for your browser side code. Again, this file must exist and implement `ReactRouter` to render the `routes` to the dom. Also must exist at `/src/index.js`
