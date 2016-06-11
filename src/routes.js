@@ -2,8 +2,7 @@ import React from 'react';
 import {IndexRoute, Route} from 'react-router';
 
 import {
-  Home,
-  NotFound
+  Home
 } from './containers';
 
 export default (
