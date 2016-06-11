@@ -26,9 +26,9 @@ The repo currently contains a boilerplate demo. To try,
 
 ## kube on your project
 
-### Install
-`npm install --save-dev kube`
 
+## Use as a Middleware
+`npm install --save-dev kube`
 
 ### Express App - Server side rendering
 ```js
@@ -90,6 +90,11 @@ ReactDOM.render(
   document.getElementById('root')
 );
 ```
+
+## Use as a standalone server
+1. `npm install -g kube`
+2. `cd project-dir`
+3. `kube`
 
 ## Still in Alpha
 Currently, Reax is still in heavy development and being ironed out. There are many places for improvement to add flexibility and configuration. In the current stage there are some strong dependencies the app requires. Until configuration api end points are created, please keep the following in mind.
