@@ -1,19 +1,9 @@
-const React = require('react'),
-  {server, hot} = require('./server'),
-  ReactDOMServer = require('react-dom/server'),
-  {match, RouterContext} = require('react-router'),
+const server = require('./server'),
   path = require('path'),
   express = require('express')
 
-/*module.exports = function(app){
-  app.use(server,hot,kubeMiddleware, express.static(kube_path + '/dist'))
-
-  return app
-}*/
-
-
-module.exports = function(app, options) {
-/*  const kube_path = path.resolve(__dirname + '/../'),
+module.exports = function(app) {
+  const kube_path = path.resolve(__dirname + '/../'),
     project_path = process.cwd()
 
   const kube_default = {
@@ -28,12 +18,13 @@ module.exports = function(app, options) {
   let options = {
     project_routes: false,
     project_entry_component: project_path + '/src/components/App.js'
-  }*/
+  }
 
+  options = Object.assign({},kube_default,options)
 
+  const {dev, hot, ssr} = server(options)
 
-
-  app.use(kubeMiddleware)
+  app.use(dev, hot, ssr)
 
   return app
 }
