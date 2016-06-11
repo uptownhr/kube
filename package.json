@@ -38,6 +38,7 @@
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "nodemon": "^1.9.2",
     "webpack-hot-middleware": "^2.10.0"
   }
 }
