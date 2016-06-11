@@ -21,7 +21,7 @@ let options = {
   project_routes: false,
   project_entry_component: project_path + '/src/components/App.js'
 }
-
+options = {}
 options = Object.assign({},kube_default,options)
 
 

@@ -5,7 +5,7 @@ const React = require('react'),
   path = require('path'),
   express = require('express')
 
-module.exports = function(app) {
+module.exports = function(app, options={}) {
   const kube_path = path.resolve(__dirname + '/../'),
     project_path = process.cwd()
 
@@ -15,16 +15,12 @@ module.exports = function(app) {
     project_entry: project_path + '/src/index.js',
     project_entry_component: false,
     project_routes: project_path + '/src/routes.js',
-    project_public_path: project_path + '/public'
-  }
-
-  let options = {
-    project_routes: false,
-    project_entry_component: project_path + '/src/components/App.js'
+    project_public_path: project_path + '/public',
+    mount: false
   }
 
   options = Object.assign({},kube_default,options)
-
+  console.log(options)
   const {dev, hot, ssr, asset} = server(options)
 
   app.use(asset, dev, hot, ssr )

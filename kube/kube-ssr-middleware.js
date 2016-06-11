@@ -1,9 +1,9 @@
 const React = require('react'),
-  ReactDOMServer = require('react-dom/server')
+  ReactDOMServer = require('react-dom/server'),
+  { match, RouterContext } = require('react-router')
 
-module.exports = function({ kube_path, project_routes }){
-  return function(req,res){
-    console.log('kube-ssr: rendering', req.url)
+module.exports = function({ kube_path, project_routes, mount = false }){
+  return function(req,res,next){
     /*
      handle react route cache
      */
@@ -11,12 +11,32 @@ module.exports = function({ kube_path, project_routes }){
     if (id) delete require.cache[id]
     const routes = require( kube_path + '/public/dist/routes' )
 
+    if(mount){
+      res.kube = {
+        render: function(state){
+          match({routes,location:req.url}, (err, redirect, renderProps) => {
+            renderProps.location.state = state
+
+            const routerElement = React.createElement(RouterContext, renderProps)
+            const template = render_layout(routerElement, state)
+
+            res.send(template)
+          })
+        }
+      }
+
+      return next()
+    }
+
+    console.log('kube-ssr: rendering', req.url)
+
     if(project_routes){
+      const state = {}
       match({routes,location:req.url}, (err, redirect, renderProps) => {
         renderProps.location.state = state
 
         const routerElement = React.createElement(RouterContext, renderProps)
-        const template = template(routerElement, state)
+        const template = render_layout(routerElement, state)
 
         res.send(template)
       })

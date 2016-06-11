@@ -9,12 +9,12 @@ module.exports = function(options){
   }
 }
 
-const client_config = function({kube_path,project_public_path}){
+const client_config = function({kube_path,project_public_path, project_entry}){
   return {
     devtool: 'eval',
     entry: [
       'webpack-hot-middleware/client',
-      './src/index.js'
+      project_entry
     ],
     output: {
       path: path.join(project_public_path, '/dist'),
@@ -41,11 +41,6 @@ const client_config = function({kube_path,project_public_path}){
     },
     plugins: [
       new webpack.HotModuleReplacementPlugin(),
-      new webpack.DefinePlugin({
-        __CLIENT__: true,
-        __SERVER__: false,
-        __DEVELOPMENT__: true
-      })
     ],
     resolve: {
       modulesDirectories: [
