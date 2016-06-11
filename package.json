@@ -4,6 +4,7 @@
   "description": "Universal React Express middleware package. A universal react dev environment provided through npm",
   "main": "reax/reax-middleware.js",
   "dependencies": {
+    "app-module-path": "^1.1.0",
     "babel-core": "^6.9.0",
     "babel-loader": "^6.2.4",
     "babel-plugin-add-module-exports": "^0.2.1",
@@ -36,5 +37,7 @@
   },
   "author": "",
   "license": "ISC",
-  "devDependencies": {}
+  "devDependencies": {
+    "webpack-hot-middleware": "^2.10.0"
+  }
 }

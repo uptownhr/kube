@@ -1,13 +1,15 @@
 // jscs:disable maximumLineLength
 import React, { Component } from 'react';
 import { Grid, Row, Col, Button, Jumbotron } from 'react-bootstrap';
+
 import './home.css'
+import kube from './kube.svg'
 
 const Fold = function () {
   return (
     <div>
       <Jumbotron>
-        <img style={{color: '#fff', width: '300px'}} src="https://pixabay.com/get/e837b80c29f7003ed1584d05fb094490e274e2dc1bac104593f5c47bafecb2b1/art-1293131_1280.png" />
+        <img style={{color: '#fff', width: '300px'}} src={kube} />
         <h1>Hackable Reax</h1>
         <p>Universal React Express middleware package. A universal react dev environment provided through npm install</p>
       </Jumbotron>

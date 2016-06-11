@@ -2,8 +2,10 @@ var path = require('path');
 var fs = require('fs');
 var webpack = require('webpack');
 
+const app_root = path.dirname(require.main.filename)
+
 var nodeModules = {};
-fs.readdirSync('node_modules')
+fs.readdirSync( app_root + '/node_modules')
   .filter(function(x) {
     return ['.bin'].indexOf(x) === -1;
   })
@@ -13,7 +15,7 @@ fs.readdirSync('node_modules')
 
 var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
-const app_root = path.dirname(require.main.filename)
+
 
 module.exports = {
   devtool: 'eval',

@@ -1,7 +1,7 @@
 const express = require('express'),
   app = express()
 
-require('./reax/reax-middleware')(app)
+require('./kube/kube-middleware')(app)
 
 const mongoose = require('mongoose')
 
