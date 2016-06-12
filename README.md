@@ -103,6 +103,6 @@ Currently, Kube is still in heavy development and being ironed out. There are ma
 
 Some form of the 3 files mentioned above need to exist. 
 
-1. `/index/js`: is flexible but needs to load in the hackable-reax middleware
-2. `/src/routes.js`: `res.reax.render` depends on `react-router/routes` to automatically create your components per a given url. This file must currently exist at `/src/routes.js`
+1. `/index/js`: is flexible but needs to load in the kube middleware
+2. `/src/routes.js`: `res.kube.render` depends on `react-router/routes` to automatically create your components per a given url. This file must currently exist at `/src/routes.js`
 3. `/src/index.js`: this is the entry point for your browser side code. Again, this file must exist and implement `ReactRouter` to render the `routes` to the dom. Also must exist at `/src/index.js`
