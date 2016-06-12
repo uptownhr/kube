@@ -98,7 +98,7 @@ ReactDOM.render(
 
 
 ## Still in Alpha
-Currently, Reax is still in heavy development and being ironed out. There are many places for improvement to add flexibility and configuration. In the current stage there are some strong dependencies the app requires. Until configuration api end points are created, please keep the following in mind.
+Currently, Kube is still in heavy development and being ironed out. There are many places for improvement to add flexibility and configuration. In the current stage there are some strong dependencies the app requires. Until configuration api end points are created, please keep the following in mind.
 
 
 Some form of the 3 files mentioned above need to exist. 
