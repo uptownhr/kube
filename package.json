@@ -3,6 +3,9 @@
   "version": "1.2.7",
   "description": "Universal React Express middleware package. A universal react dev environment provided through npm",
   "main": "reax/reax-middleware.js",
+  "bin": {
+    "kube": "./bin/kube.js"
+  },
   "dependencies": {
     "app-module-path": "^1.1.0",
     "babel-core": "^6.9.0",

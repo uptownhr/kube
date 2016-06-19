@@ -1,0 +1,6 @@
+{
+  "client_entry": "src/client.js",
+  "server_entry": "src/server.js",
+  "layout_path": "src/layout.js",
+  "public_path": "public"
+}
