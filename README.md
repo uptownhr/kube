@@ -18,19 +18,20 @@ Webpack module loaders are awesome and brings lot of value to your react develop
  Using Kube, components rendered from the server are also prebuilt using webpack. Meaning all the module loaders have parsed through the require statements already. This results in a clean translation between client/server, allowing you to easily use module loaders on react universally. 
 
 
-## Kube boilderplate
-
-The repo currently contains a boilerplate demo. To try,
-
-1. git clone git@github.com/uptownhr/kube
-2. npm install
-3. npm run dev
-
 ## Use as a standalone server
+`npm install -g kube`
 
-1. `npm install -g kube`
-2. `cd your-project-dir`
-3. `kube`
+New Project
+1. `kube init testing-kube`
+2. `cd testing-kube`
+3. `kube up`
+
+Existing Project
+1. `cd your-project`
+2. `kube init`
+3. `kube up`
+
+Visit localhost:3000
 
 ## Use as a Middleware
 `npm install --save-dev kube`

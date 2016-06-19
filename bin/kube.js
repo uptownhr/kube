@@ -2,7 +2,7 @@
 const {addPath} = require('app-module-path'),
   path = require('path'),
   program = require('commander'),
-  fs = require('fs'),
+  fs = require('fs-extra'),
   version = require('../package.json').version
 
 addPath(process.cwd() + '/node_modules')
@@ -16,6 +16,25 @@ program.command('init [project-name]')
   .description('initialize a kube project')
   .action( project_name => {
     console.log(project_name)
+    if(project_name){
+      try{
+        fs.lstatSync(project_path + '/' + project_name)
+        return console.log('project directory already exists')
+      }catch(e){
+        createDir(project_path + '/' + project_name)
+        createDir(project_path + '/' + project_name + '/public')
+        makeRC(project_path + '/' + project_name + '/.kuberc')
+        createSRC(project_path + '/' + project_name + '/src')
+      }
+    }else{
+      if(kubercExists()){
+        return console.log('already ')
+      }else{
+        createDir(project_path + '/public')
+        makeRC(project_path + '/.kuberc')
+        createSRC(project_path + '/src')
+      }
+    }
   })
 
 program.command('up')
@@ -75,4 +94,25 @@ function up(){
 
     return options
   }
+}
+
+function createDir(path){
+  fs.mkdirSync(path)
+  console.log('directory created', path)
+}
+
+function makeRC(path){
+  const default_rc = `module.exports = {
+  src_path: "src",
+  public_path: "public",
+  debug: false
+}`
+  fs.writeFile(path, default_rc, err => {
+    if(err) return console.log(err)
+    console.log('default .kuberc created')
+  })
+}
+
+function createSRC(path){
+  fs.copySync( __dirname + '/boilerplate/src', path)
 }

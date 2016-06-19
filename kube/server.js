@@ -14,7 +14,7 @@ module.exports = function(options){
     publicPath: client_config.output.publicPath,
     hot: true,
     historyApiFallback: true,
-    noInfo: options.debug ? true : false
+    noInfo: !options.debug
   }
 
   const server_options = {
