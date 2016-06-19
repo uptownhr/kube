@@ -7,9 +7,13 @@ import img from './cube.svg'
 class App extends React.Component{
   render(){
     return (
-      <div>
-        <h1 style={{textAlign: 'center'}}>Kubing it!</h1>
+      <div style={{textAlign: 'center'}}>
+        <h1>Kubing it!</h1>
         <img style={{width: '100%'}} src={img} />
+        <br/><br/>
+        <p>
+          We can now get started
+        </p>
       </div>
     )
   }
