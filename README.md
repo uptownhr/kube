@@ -22,11 +22,13 @@ Webpack module loaders are awesome and brings lot of value to your react develop
 `npm install -g kube`
 
 New Project
+
 1. `kube init testing-kube`
 2. `cd testing-kube`
 3. `kube up`
 
 Existing Project
+
 1. `cd your-project`
 2. `kube init`
 3. `kube up`
