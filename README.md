@@ -61,14 +61,3 @@ app.get('/', function(req,res){
   res.kube.render(state)
 })
 ```
-
-
-## Still in Alpha
-Currently, Kube is still in heavy development and being ironed out. There are many places for improvement to add flexibility and configuration. In the current stage there are some strong dependencies the app requires. Until configuration api end points are created, please keep the following in mind.
-
-
-Some form of the 3 files mentioned above need to exist. 
-
-1. `/index/js`: is flexible but needs to load in the kube middleware
-2. `/src/routes.js`: `res.kube.render` depends on `react-router/routes` to automatically create your components per a given url. This file must currently exist at `/src/routes.js`
-3. `/src/index.js`: this is the entry point for your browser side code. Again, this file must exist and implement `ReactRouter` to render the `routes` to the dom. Also must exist at `/src/index.js`
