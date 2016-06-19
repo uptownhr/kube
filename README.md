@@ -90,7 +90,7 @@ There are 5 files that are mandatory to use kube. These are automatically genera
 This is the entry point for your client-side javascript. Normally this will initialize and mount your app to the dom.
 
 sample
-```
+```js
 import React from 'react'
 import {render} from 'react-dom'
 import App from './components/App'
@@ -104,7 +104,7 @@ render(<App {...state} />, selector)
 The component to make available to the server for rendering. The server.js must export an object to be used by the server. This could be an simple single Component or a React Routes component.
 
 sample
-```
+```js
 module.exports = require('./components/App')
 ```
 
@@ -117,20 +117,21 @@ A file to make updates to the main layout file being rendered from the server. T
 - stateString: This is an optional state object converted to string through `JSON.stringify` that can be passed to the browser.
 
 sample
-```
+```js
 module.exports = function ({renderString, bundlePath, stylePath, stateString }) {
   return `
-<html>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
-<link rel="stylesheet" href="${stylePath}">
-<body>
-<div id='root'>${renderString}</div>
-<script>
-window.__INITIAL_STATE = ${stateString}
-</script>
-<script src="${bundlePath}"></script>
-</body>
-</html>`
+   <html>
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/latest/css/bootstrap.min.css">
+   <link rel="stylesheet" href="${stylePath}">
+   <body>
+   <div id='root'>${renderString}</div>
+   <script>
+   window.__INITIAL_STATE = ${stateString}
+   </script>
+   <script src="${bundlePath}"></script>
+   </body>
+   </html>
+  `
 }
 ```
 
@@ -141,7 +142,7 @@ The express handler defines how your component will be rendered to string, and i
 - state: the state passed from `res.kube.render`
 
 sample
-```
+```js
 const React = require('react'),
   ReactDOMServer = require('react-dom/server'),
   { match, RouterContext } = require('react-router')
@@ -188,7 +189,7 @@ Configuration of the paths and toggling debug mode.
 Only mandatory if using the standalone server through `kube up`. The middleware implementation takes in options during initialization.
 
 default
-```
+```js
 module.exports = {
   src_path: "src",
   public_path: "public",
