@@ -56,47 +56,6 @@ app.get('/', function(req,res){
 })
 ```
 
-### React Routes
-
-```
-// /src/routes.js
-import React from 'react';
-import {IndexRoute, Route} from 'react-router';
-
-const Home = function(props){
-  return <div>{JSON.stringify(props.location.state)}</div>
-}
-
-export default (
-  <Route path="/" component={Home} />
-);
-```
-
-### Browser App - Client resuming react components
-
-```
-// /src/index.js
-import React from 'react';
-import ReactDOM from 'react-dom';
-
-import { RouterContext, Router, browserHistory } from 'react-router';
-
-import routes from './routes';
-
-
-const render = function(props){
-  props.location.state = window.state
-  return <RouterContext {...props} />
-}
-
-ReactDOM.render(
-  <Router history={browserHistory} render={render}>
-    {routes}
-  </Router>,
-  document.getElementById('root')
-);
-```
-
 
 ## Still in Alpha
 Currently, Kube is still in heavy development and being ironed out. There are many places for improvement to add flexibility and configuration. In the current stage there are some strong dependencies the app requires. Until configuration api end points are created, please keep the following in mind.
