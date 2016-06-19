@@ -13,7 +13,7 @@ module.exports = function(Component, url, state){
  * @returns String
  * @constructor
  */
-function SingleComponent(Component){
+function SingleComponent(Component, state){
   const element = React.createElement(Component, state)
   return ReactDOMServer.renderToString(element)
 }

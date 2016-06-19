@@ -102,15 +102,8 @@ function createDir(path){
 }
 
 function makeRC(path){
-  const default_rc = `module.exports = {
-  src_path: "src",
-  public_path: "public",
-  debug: false
-}`
-  fs.writeFile(path, default_rc, err => {
-    if(err) return console.log(err)
-    console.log('default .kuberc created')
-  })
+  fs.copySync( __dirname + '/boilerplate/.kuberc', path)
+  console.log('default .kuberc created')
 }
 
 function createSRC(path){
