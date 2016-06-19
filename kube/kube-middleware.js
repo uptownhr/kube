@@ -9,21 +9,33 @@ module.exports = function(app, options={}) {
   const kube_path = path.resolve(__dirname + '/../'),
     project_path = process.cwd()
 
-  const kube_default = {
-    kube_path,
-    project_path,
-    project_entry: project_path + '/src/index.js',
-    project_entry_component: false,
-    project_routes: project_path + '/src/routes.js',
-    project_public_path: project_path + '/public',
-    mount: true
-  }
+  options = make_options(kube_path, project_path, options)
+  options.mount = true
 
-  options = Object.assign({},kube_default,options)
-  console.log(options)
   const {dev, hot, ssr, asset} = server(options)
 
-  app.use(asset, dev, hot, ssr )
+  app.use(dev, hot, ssr, asset)
 
   return app
+}
+
+function make_options(kube_path, project_path, params){
+  //get kuberc
+  const kuberc = params
+  src_path = project_path + '/' + kuberc.src_path
+
+  const options = {
+    kube_path,
+    project_path,
+    src_path,
+    client_path: path.resolve( `${kuberc.src_path}/client.js` ),
+    server_path: path.resolve( `${kuberc.src_path}/server.js` ),
+    layout_path: path.resolve( `${kuberc.src_path}/layout.js` ),
+    public_path: path.resolve( `${kuberc.public_path}` ),
+    express_handler_path: path.resolve( `${kuberc.src_path}/express_handler.js`),
+    debug: kuberc.debug,
+    mount: kuberc.mount || false
+  }
+
+  return options
 }

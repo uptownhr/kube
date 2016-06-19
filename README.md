@@ -50,7 +50,11 @@ Loads middleware and provides
 2. the webpack hot moldule reloader
 3. res.kube.render
 */
-require('kube')(app)
+require('kube')(app, {
+  src_path: "src",
+  public_path: "public",
+  debug: false
+})
 
 app.get('/', function(req,res){
   let state = { ssr: 'server state' }

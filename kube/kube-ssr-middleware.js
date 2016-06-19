@@ -25,29 +25,29 @@ module.exports = function({ public_path, express_handler_path, layout_path, debu
     if (id3) delete require.cache[id3]
     const LayoutRender = require( layout_path )
 
-
-    if(mount){
-      /*res.kube = {
-        render: function(state){
-          match({routes,location:req.url}, (err, redirect, renderProps) => {
-            renderProps.location.state = state
-
-            const routerElement = React.createElement(RouterContext, renderProps)
-            const template = render_layout(routerElement, state)
-
-            res.send(template)
-          })
-        }
-      }
-
-      return next()*/
-    }
-
     if(debug){
       console.log('debug: ', debug)
       console.log('kube-ssr: rendering', req.url)
       console.log('using: ' + express_handler_path)
       console.log('and: ' + layout_path)
+    }
+
+
+    if(mount){
+      res.kube = {
+        render: function(state){
+          const renderString = ServerCompiler(ServerComponent, req.url, state)
+
+          const bundlePath = '/dist/bundle.js',
+            stylePath = '/dist/styles.css'
+
+          const template = LayoutRender({bundlePath, stylePath, renderString, stateString: JSON.stringify(state)})
+
+          res.send(template)
+        }
+      }
+
+      return next()
     }
 
     const state = {}

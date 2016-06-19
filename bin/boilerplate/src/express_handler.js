@@ -3,7 +3,7 @@ const React = require('react'),
   { match, RouterContext } = require('react-router')
 
 module.exports = function(Component, url, state){
-  const componentString = SingleComponent(Component)
+  const componentString = SingleComponent(Component, state)
   return componentString
 }
 
@@ -14,7 +14,7 @@ module.exports = function(Component, url, state){
  * @constructor
  */
 function SingleComponent(Component){
-  const element = React.createElement(Component)
+  const element = React.createElement(Component, state)
   return ReactDOMServer.renderToString(element)
 }
 
