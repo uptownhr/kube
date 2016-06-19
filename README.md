@@ -7,7 +7,7 @@ Universal React Express middleware package. A universal react dev environment pr
 ## What's included?
 Kube comes with with a middleware that will,
 
-1. render your components `react-router/routes` component serverside
+1. render your components serverside
 2. webpack dev server
 3. webpack hot module reloader server
 4. webpack module loaders from the server
