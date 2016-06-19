@@ -18,19 +18,22 @@ Webpack module loaders are awesome and brings lot of value to your react develop
  Using Kube, components rendered from the server are also prebuilt using webpack. Meaning all the module loaders have parsed through the require statements already. This results in a clean translation between client/server, allowing you to easily use module loaders on react universally. 
 
 
-## Kube boilderplate
-
-The repo currently contains a boilerplate demo. To try,
-
-1. git clone git@github.com/uptownhr/kube
-2. npm install
-3. npm run dev
-
 ## Use as a standalone server
+`npm install -g kube`
 
-1. `npm install -g kube`
-2. `cd your-project-dir`
-3. `kube`
+New Project
+
+1. `kube init testing-kube`
+2. `cd testing-kube`
+3. `kube up`
+
+Existing Project
+
+1. `cd your-project`
+2. `kube init`
+3. `kube up`
+
+Visit localhost:3000
 
 ## Use as a Middleware
 `npm install --save-dev kube`
@@ -47,53 +50,16 @@ Loads middleware and provides
 2. the webpack hot moldule reloader
 3. res.kube.render
 */
-require('kube')(app)
+require('kube')(app, {
+  src_path: "src",
+  public_path: "public",
+  debug: false
+})
 
 app.get('/', function(req,res){
   let state = { ssr: 'server state' }
   res.kube.render(state)
 })
-```
-
-### React Routes
-
-```
-// /src/routes.js
-import React from 'react';
-import {IndexRoute, Route} from 'react-router';
-
-const Home = function(props){
-  return <div>{JSON.stringify(props.location.state)}</div>
-}
-
-export default (
-  <Route path="/" component={Home} />
-);
-```
-
-### Browser App - Client resuming react components
-
-```
-// /src/index.js
-import React from 'react';
-import ReactDOM from 'react-dom';
-
-import { RouterContext, Router, browserHistory } from 'react-router';
-
-import routes from './routes';
-
-
-const render = function(props){
-  props.location.state = window.state
-  return <RouterContext {...props} />
-}
-
-ReactDOM.render(
-  <Router history={browserHistory} render={render}>
-    {routes}
-  </Router>,
-  document.getElementById('root')
-);
 ```
 
 

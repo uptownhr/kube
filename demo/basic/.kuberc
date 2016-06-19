@@ -1,0 +1,5 @@
+module.exports = {
+  src_path: "src",
+  public_path: "public",
+  debug: false
+}
