@@ -1,6 +1,5 @@
 module.exports = {
-  client_entry: "src/client.js",
-  server_entry: "src/server.js",
-  layout_path: "src/layout.js",
-  public_path: "public"
+  src_path: "src",
+  public_path: "public",
+  debug: false
 }

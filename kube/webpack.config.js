@@ -9,15 +9,15 @@ module.exports = function(options){
   }
 }
 
-const client_config = function({kube_path,project_path, project_public_path, project_entry}){
+const client_config = function({kube_path, project_path, src_path, public_path, client_path}){
   return {
     devtool: 'eval',
     entry: [
       'webpack-hot-middleware/client',
-      project_entry
+      client_path
     ],
     output: {
-      path: path.join(project_public_path, '/dist'),
+      path: path.join(public_path, '/dist'),
       filename: 'bundle.js',
       publicPath: '/dist/'
     },
@@ -26,12 +26,12 @@ const client_config = function({kube_path,project_path, project_public_path, pro
         {
           test: /\.js$/,
           loader: 'react-hot',
-          include: project_path + '/src',
+          include: src_path,
         },
         {
           test: /\.js$/,
           loader: 'babel',
-          include: project_path + '/src',
+          include: src_path,
           query: {
             "presets": ["react", "es2015", "stage-0"],
             "plugins": ["transform-decorators-legacy", "add-module-exports"]
@@ -49,31 +49,35 @@ const client_config = function({kube_path,project_path, project_public_path, pro
     resolve: {
       modulesDirectories: [
         kube_path + '/node_modules',
-        process.cwd() + '/node_modules'
+        project_path + '/node_modules'
       ]
     }
   };
 }
 
-const server_config = function({kube_path, project_path, project_entry_component, project_routes, project_entry}){
-  var ExtractTextPlugin = require("extract-text-webpack-plugin");
+const server_config = function({kube_path, project_path, server_path, src_path}){
+  const ExtractTextPlugin = require("extract-text-webpack-plugin"),
+    nodeModules = {};
 
-  var nodeModules = {};
-  fs.readdirSync( project_path + '/node_modules')
-    .filter(function(x) {
-      return ['.bin'].indexOf(x) === -1
-    })
-    .forEach(function(mod) {
-      nodeModules[mod] = 'commonjs ' + mod;
-    });
+  try{
+    let stat = fs.lstatSync(project_path+'/node_modules')
+    fs.readdirSync( project_path + '/node_modules')
+      .filter(function(x) {
+        return ['.bin'].indexOf(x) === -1
+      })
+      .forEach(function(mod) {
+        nodeModules[mod] = 'commonjs ' + mod;
+      });
+  }catch(e){
+    console.log('node_modules directory does not exist')
+  }
 
-  let entry = project_entry_component || project_routes || project_entry
 
   return {
-    entry,
+    entry: server_path,
     devtool: 'eval',
     output: {
-      path:  kube_path + '/public/dist',
+      path:  project_path + '/public/dist',
       filename: 'routes.js',
       publicPath: '/dist/',
       libraryTarget: 'commonjs2',
@@ -84,7 +88,7 @@ const server_config = function({kube_path, project_path, project_entry_component
         {
           test: /\.js$/,
           loader: 'babel',
-          include: project_path + '/src',
+          include: src_path,
           query: {
             "presets": ["react", "es2015", "stage-0"],
             "plugins": ["transform-decorators-legacy", "add-module-exports"]
@@ -102,7 +106,7 @@ const server_config = function({kube_path, project_path, project_entry_component
     resolve: {
       modulesDirectories: [
         kube_path + '/node_modules',
-        process.cwd() + '/node_modules'
+        project_path + '/node_modules'
       ]
     }
   };

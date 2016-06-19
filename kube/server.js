@@ -14,7 +14,7 @@ module.exports = function(options){
     publicPath: client_config.output.publicPath,
     hot: true,
     historyApiFallback: true,
-    noInfo: true
+    noInfo: options.debug ? true : false
   }
 
   const server_options = {
@@ -30,11 +30,11 @@ module.exports = function(options){
     dev: webpackDevMiddleware(client_compiler, client_options),
     hot: hotMiddleware(client_compiler),
     ssr: kubeSSR(options),
-    asset: express.static(options.kube_path + '/public')
+    asset: express.static(options.public_path)
   }
 }
 
-function server_compiler(){
+/*function server_compiler(){
   const ExtractTextPlugin = require("extract-text-webpack-plugin");
 
   var nodeModules = {};
@@ -45,6 +45,6 @@ function server_compiler(){
     .forEach(function(mod) {
       nodeModules[mod] = 'commonjs ' + mod;
     });
-}
+}*/
 
 
