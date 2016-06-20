@@ -25,17 +25,16 @@ module.exports = function({ public_path, express_handler_path, layout_path, debu
     if (id3) delete require.cache[id3]
     const LayoutRender = require( layout_path )
 
-    if(debug){
-      console.log('debug: ', debug)
-      console.log('kube-ssr: rendering', req.url)
-      console.log('using: ' + express_handler_path)
-      console.log('and: ' + layout_path)
-    }
-
-
     if(mount){
       res.kube = {
         render: function(state){
+          if(debug){
+            console.log('debug: ', debug)
+            console.log('kube-ssr: rendering', req.url)
+            console.log('using: ' + express_handler_path)
+            console.log('and: ' + layout_path)
+          }
+
           const renderString = ServerCompiler(ServerComponent, req.url, state)
 
           const bundlePath = '/dist/bundle.js',
@@ -48,6 +47,13 @@ module.exports = function({ public_path, express_handler_path, layout_path, debu
       }
 
       return next()
+    }
+
+    if(debug){
+      console.log('debug: ', debug)
+      console.log('kube-ssr: rendering', req.url)
+      console.log('using: ' + express_handler_path)
+      console.log('and: ' + layout_path)
     }
 
     const state = {}
