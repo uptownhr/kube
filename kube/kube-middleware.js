@@ -21,21 +21,21 @@ module.exports = function(app, options={}) {
 
 function make_options(kube_path, project_path, params){
   //get kuberc
-  const kuberc = params
-  src_path = project_path + '/' + kuberc.src_path
+  const kuberc = require(project_path + '/.kuberc')
 
-  const options = {
+  let options = Object.assign({}, kuberc, params)
+  let src_path = project_path + '/' + options.src_path
+
+  return {
     kube_path,
     project_path,
     src_path,
-    client_path: path.resolve( `${kuberc.src_path}/client.js` ),
-    server_path: path.resolve( `${kuberc.src_path}/server.js` ),
-    layout_path: path.resolve( `${kuberc.src_path}/layout.js` ),
-    public_path: path.resolve( `${kuberc.public_path}` ),
-    express_handler_path: path.resolve( `${kuberc.src_path}/express_handler.js`),
-    debug: kuberc.debug,
-    mount: kuberc.mount || false
+    client_path: path.resolve( `${options.src_path}/client.js` ),
+    server_path: path.resolve( `${options.src_path}/server.js` ),
+    layout_path: path.resolve( `${options.src_path}/layout.js` ),
+    public_path: path.resolve( `${options.public_path}` ),
+    express_handler_path: path.resolve( `${options.src_path}/express_handler.js`),
+    debug: options.debug,
+    mount: options.mount || false
   }
-
-  return options
 }
