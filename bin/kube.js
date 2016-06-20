@@ -8,8 +8,7 @@ const {addPath} = require('app-module-path'),
 
 
 const server = require('../kube/server')
-const kube_path = path.resolve(__dirname + '/../'),
-  project_path = process.cwd()
+const kube_path = path.resolve(__dirname + '/../')
 
 addPath(process.cwd() + '/node_modules')
 addPath(kube_path + '/node_modules')
@@ -17,26 +16,57 @@ addPath(kube_path + '/node_modules')
 program.command('init [project-name]')
   .description('initialize a kube project')
   .action( project_name => {
-    console.log(project_name)
+    console.log('initializing kube')
+    let project_path = process.cwd()
+
     if(project_name){
+      project_path += '/' + project_name
+
+      try{
+        fs.lstatSync(project_path + '/' + project_name)
+        return console.log('project directory already exists')
+      }catch(e) {
+        createDir(project_path + '/' + project_name)
+      }
+    }
+
+    if(kubercExists()) {
+      return console.log('already initialized')
+    }
+
+    let kuberc_path = project_path + '/.kuberc',
+      public_path = project_path + '/public',
+      src_path = project_path + '/src'
+
+    makeRC(kuberc_path)
+
+    if(!fs.existsSync(public_path)){
+      console.log('not exists')
+      createDir(public_path)
+    } else{
+      console.log('exists')
+    }
+
+    createSRC(src_path)
+
+    /*if(project_name){
       try{
         fs.lstatSync(project_path + '/' + project_name)
         return console.log('project directory already exists')
       }catch(e){
         createDir(project_path + '/' + project_name)
-        createDir(project_path + '/' + project_name + '/public')
-        makeRC(project_path + '/' + project_name + '/.kuberc')
-        createSRC(project_path + '/' + project_name + '/src')
+
       }
     }else{
       if(kubercExists()){
         return console.log('already ')
       }else{
-        createDir(project_path + '/public')
+
         makeRC(project_path + '/.kuberc')
+        createDir(project_path + '/public')
         createSRC(project_path + '/src')
       }
-    }
+    }*/
   })
 
 program.command('up')
