@@ -33,6 +33,7 @@ module.exports = function({ public_path, express_handler_path, layout_path, debu
             console.log('kube-ssr: rendering', req.url)
             console.log('using: ' + express_handler_path)
             console.log('and: ' + layout_path)
+            console.log('state:', state)
           }
 
           const renderString = ServerCompiler(ServerComponent, req.url, state)

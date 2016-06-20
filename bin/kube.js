@@ -89,7 +89,7 @@ if (process.argv.length == 2) {
 
 function kubercExists(){
   try{
-    fs.lstatSync(project_path + '/.kuberc')
+    fs.lstatSync(process.cwd() + '/.kuberc')
     return true
   }catch(e){
     return false
@@ -97,7 +97,7 @@ function kubercExists(){
 }
 
 function up(){
-  const options = make_options(kube_path, project_path)
+  const options = make_options(kube_path)
   const {asset, dev, hot, ssr} = server(options)
 
   const express = require('express'),
@@ -107,7 +107,9 @@ function up(){
 
   app.use(dev, hot, ssr, asset)
 
-  function make_options(kube_path, project_path){
+  function make_options(kube_path){
+    const project_path = process.cwd()
+
     //get kuberc
     const kuberc = require(project_path + '/.kuberc'),
       src_path = project_path + '/' + kuberc.src_path
