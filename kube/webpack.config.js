@@ -10,6 +10,7 @@ module.exports = function(options){
 }
 
 const client_config = function({kube_path, project_path, src_path, public_path, client_path}){
+
   return {
     devtool: 'eval',
     entry: [
@@ -47,6 +48,12 @@ const client_config = function({kube_path, project_path, src_path, public_path, 
       new webpack.HotModuleReplacementPlugin(),
     ],
     resolve: {
+      modulesDirectories: [
+        kube_path + '/node_modules',
+        project_path + '/node_modules'
+      ]
+    },
+    resolveLoader: {
       modulesDirectories: [
         kube_path + '/node_modules',
         project_path + '/node_modules'
@@ -104,6 +111,12 @@ const server_config = function({kube_path, project_path, server_path, src_path})
     ],
     externals: nodeModules,
     resolve: {
+      modulesDirectories: [
+        kube_path + '/node_modules',
+        project_path + '/node_modules'
+      ]
+    },
+    resolveLoader: {
       modulesDirectories: [
         kube_path + '/node_modules',
         project_path + '/node_modules'

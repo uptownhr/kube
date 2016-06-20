@@ -5,12 +5,14 @@ const {addPath} = require('app-module-path'),
   fs = require('fs-extra'),
   version = require('../package.json').version
 
-addPath(process.cwd() + '/node_modules')
+
 
 const server = require('../kube/server')
 const kube_path = path.resolve(__dirname + '/../'),
   project_path = process.cwd()
 
+addPath(process.cwd() + '/node_modules')
+addPath(kube_path + '/node_modules')
 
 program.command('init [project-name]')
   .description('initialize a kube project')
