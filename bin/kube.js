@@ -23,10 +23,10 @@ program.command('init [project-name]')
       project_path += '/' + project_name
 
       try{
-        fs.lstatSync(project_path + '/' + project_name)
+        fs.lstatSync(project_path)
         return console.log('project directory already exists')
       }catch(e) {
-        createDir(project_path + '/' + project_name)
+        createDir(project_path)
       }
     }
 
