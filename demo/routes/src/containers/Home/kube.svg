@@ -1,9 +1,0 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
-<g transform="translate(-6,-1.3622)">
-<path d="m30,2.36218-20,10 20,10 20-10z" fill="#f9f9f9"/>
-<path d="m30,22.36218v25l20-10v-25z" fill="#ececec"/>
-<path d="m30,22.36218v25l-20-10v-25z" fill="#ccc"/>
-<path d="m30,2.375-20,10v25l20,10 20-10v-25l-20-10z" fill="none" stroke="#4d4d4d"/>
-</g>
-</svg>

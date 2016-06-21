@@ -3,7 +3,7 @@ const React = require('react'),
   { match, RouterContext } = require('react-router')
 
 module.exports = function(Component, url, state){
-  const componentString = SingleComponent(Component, state)
+  const componentString = RouterComponent(Component, url, state)
   return componentString
 }
 
@@ -26,9 +26,9 @@ function SingleComponent(Component, state){
 function RouterComponent(Routes, url, state){
   let string = ''
 
-  match({ route: Routes, location: url }, (err, redirect, renderProps) => {
+  match({routes: Routes, location: url}, (err, redirect, renderProps) => {
     renderProps.location.state = state
-
+    console.log('wtetstst')
     const routerElement = React.createElement(RouterContext, renderProps)
     string = ReactDOMServer.renderToString(routerElement)
   })
