@@ -1,6 +1,6 @@
 {
   "name": "kube",
-  "version": "1.4.10",
+  "version": "1.4.11",
   "description": "Universal React Express middleware package. A universal react dev environment provided through npm",
   "main": "kube/kube-middleware.js",
   "bin": {
