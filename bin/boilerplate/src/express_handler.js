@@ -26,7 +26,7 @@ function SingleComponent(Component, state){
 function RouterComponent(Routes, url, state){
   let string = ''
 
-  match({ route: Routes, location: url }, (err, redirect, renderProps) => {
+  match({ routes: Routes, location: url }, (err, redirect, renderProps) => {
     renderProps.location.state = state
 
     const routerElement = React.createElement(RouterContext, renderProps)
