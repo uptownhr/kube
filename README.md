@@ -107,6 +107,10 @@ sample
 ```js
 module.exports = require('./components/App')
 ```
+or, if you want to use routes
+```js
+module.exports = require('./routes')
+```
 
 
 ### layout.js
