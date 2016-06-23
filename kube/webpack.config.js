@@ -26,11 +26,6 @@ const client_config = function({kube_path, project_path, src_path, public_path, 
       loaders: [
         {
           test: /\.js$/,
-          loader: 'react-hot',
-          include: src_path,
-        },
-        {
-          test: /\.js$/,
           loader: 'babel',
           include: src_path,
           query: {
