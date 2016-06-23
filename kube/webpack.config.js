@@ -35,12 +35,17 @@ const client_config = function({kube_path, project_path, src_path, public_path, 
           include: src_path,
           query: {
             "presets": ["react", "es2015", "stage-0"],
-            "plugins": ["transform-decorators-legacy", "add-module-exports"]
+            "plugins": [
+              "transform-decorators-legacy",
+              "add-module-exports",
+              ["transform-react-jsx", { "pragma":"h" }]
+            ]
           }
         },
         { test: /\.scss$/, loaders: ["style", "css", "sass"] },
         { test: /\.css$/, loader: "style!css" },
-        { test: /\.png|svg|jpg$/, loader: 'url-loader?limit=1024' },
+        { test: /\.(png|svg|jpg|gif)$/, loader: 'url-loader?limit=1024' },
+        //{ test: /\.(?!(js|scss|css|otf|eot|ttf|woff|woff2))/, loader: 'url-loader?limit=1024' },
         { test: /\.(otf|eot|ttf|woff|woff2)$/, loader: 'file' }
       ]
     },
@@ -98,16 +103,22 @@ const server_config = function({kube_path, project_path, server_path, src_path})
           include: src_path,
           query: {
             "presets": ["react", "es2015", "stage-0"],
-            "plugins": ["transform-decorators-legacy", "add-module-exports"]
+            "plugins": [
+              "transform-decorators-legacy",
+              "add-module-exports",
+              ["transform-react-jsx", { "pragma":"h" }]
+            ]
           }
         },
         { test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader") },
+        //{ test: /\.(?!(js|scss|css|otf|eot|ttf|woff|woff2))/, loader: 'url-loader?limit=1024' },
         { test: /\.png|svg|jpg$/, loader: 'url-loader?limit=1024' },
         { test: /\.(otf|eot|ttf|woff|woff2)$/, loader: 'file' }
       ]
     },
     plugins: [
-      new ExtractTextPlugin("styles.css")
+      new ExtractTextPlugin("styles.css"),
+
     ],
     externals: nodeModules,
     resolve: {
@@ -122,5 +133,5 @@ const server_config = function({kube_path, project_path, server_path, src_path})
         project_path + '/node_modules'
       ]
     }
-  };
+  }
 }

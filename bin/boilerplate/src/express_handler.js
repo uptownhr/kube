@@ -1,6 +1,8 @@
 const React = require('react'),
   ReactDOMServer = require('react-dom/server'),
-  { match, RouterContext } = require('react-router')
+  { match, RouterContext } = require('react-router'),
+  render = require('preact-render-to-string'),
+  { h } = require('preact')
 
 module.exports = function(Component, url, state){
   const componentString = SingleComponent(Component, state)
@@ -14,8 +16,8 @@ module.exports = function(Component, url, state){
  * @constructor
  */
 function SingleComponent(Component, state){
-  const element = React.createElement(Component, state)
-  return ReactDOMServer.renderToString(element)
+  const element = h(Component, state)
+  return render(element)
 }
 
 /**
@@ -29,8 +31,8 @@ function RouterComponent(Routes, url, state){
   match({ routes: Routes, location: url }, (err, redirect, renderProps) => {
     renderProps.location.state = state
 
-    const routerElement = React.createElement(RouterContext, renderProps)
-    string = ReactDOMServer.renderToString(routerElement)
+    const routerElement = h(RouterContext, renderProps)
+    string = render(routerElement)
   })
 
   return string
