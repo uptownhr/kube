@@ -100,7 +100,7 @@ const server_config = function({kube_path, project_path, server_path, src_path})
             "plugins": ["transform-decorators-legacy", "add-module-exports"]
           }
         },
-        { test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader") },
+        { test: /\.css|scss$/, loader: ExtractTextPlugin.extract("style", "css!sass") },
         { test: /\.png|svg|jpg$/, loader: 'url-loader?limit=1024' },
         { test: /\.(otf|eot|ttf|woff|woff2)/, loader: 'file' }
       ]
