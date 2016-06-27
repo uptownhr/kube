@@ -3,7 +3,7 @@ const React = require('react'),
   { match, RouterContext } = require('react-router')
 
 module.exports = function(Component, url, state){
-  const componentString = SingleComponent(Component, state)
+  const componentString = RouterComponent(Component, url, state)
   return componentString
 }
 

@@ -10,7 +10,6 @@ module.exports = function(options){
 }
 
 const client_config = function({kube_path, project_path, src_path, public_path, client_path}){
-
   return {
     devtool: 'eval',
     entry: [
@@ -41,7 +40,7 @@ const client_config = function({kube_path, project_path, src_path, public_path, 
         { test: /\.scss$/, loaders: ["style", "css", "sass"] },
         { test: /\.css$/, loader: "style!css" },
         { test: /\.png|svg|jpg$/, loader: 'url-loader?limit=1024' },
-        { test: /\.(otf|eot|ttf|woff|woff2)$/, loader: 'file' }
+        { test: /\.(otf|eot|ttf|woff|woff2)/, loader: 'file' }
       ]
     },
     plugins: [
@@ -103,7 +102,7 @@ const server_config = function({kube_path, project_path, server_path, src_path})
         },
         { test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader") },
         { test: /\.png|svg|jpg$/, loader: 'url-loader?limit=1024' },
-        { test: /\.(otf|eot|ttf|woff|woff2)$/, loader: 'file' }
+        { test: /\.(otf|eot|ttf|woff|woff2)/, loader: 'file' }
       ]
     },
     plugins: [

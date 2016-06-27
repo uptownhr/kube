@@ -1,1 +1,1 @@
-module.exports = require('./components/App')
+module.exports = require('./routes')
