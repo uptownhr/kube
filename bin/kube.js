@@ -15,7 +15,7 @@ addPath(kube_path + '/node_modules')
 
 program.command('init [project-name]')
   .description('initialize a kube project')
-  .option('-b, --boiler [type]', 'specify boilerplate [router, redux-router]')
+  .option('-b, --boiler [type]', 'specify boilerplate [router, router-redux]')
   .action( (project_name,options) => {
     console.log('initializing kube', project_name)
 
