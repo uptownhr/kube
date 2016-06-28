@@ -50,10 +50,7 @@ program.command('init [project-name]')
     makeRC(kuberc_path)
 
     if(!fs.existsSync(public_path)){
-      console.log('not exists')
       createDir(public_path)
-    } else{
-      console.log('exists')
     }
 
     createSRC(src_path, boiler)
