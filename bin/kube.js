@@ -15,8 +15,17 @@ addPath(kube_path + '/node_modules')
 
 program.command('init [project-name]')
   .description('initialize a kube project')
-  .action( project_name => {
-    console.log('initializing kube')
+  .option('-b, --boiler [type]', 'specify boilerplate [router, redux-router]')
+  .action( (project_name,options) => {
+    console.log('initializing kube', project_name)
+
+    const available_boilers = [ 'router', 'router-redux' ]
+    const boiler = options.boiler || 'router'
+
+    if(!available_boilers.includes(options.boiler)){
+      return console.log('Invalid boiler specified')
+    }
+
     let project_path = process.cwd()
 
     if(project_name){
@@ -47,7 +56,7 @@ program.command('init [project-name]')
       console.log('exists')
     }
 
-    createSRC(src_path)
+    createSRC(src_path, boiler)
 
     /*if(project_name){
       try{
@@ -140,6 +149,6 @@ function makeRC(path){
   console.log('default .kuberc created')
 }
 
-function createSRC(path){
-  fs.copySync( __dirname + '/boilerplate/src', path)
+function createSRC(path, boiler){
+  fs.copySync( __dirname + `/boilerplate/${boiler}`, path)
 }

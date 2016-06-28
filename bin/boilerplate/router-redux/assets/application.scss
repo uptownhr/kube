@@ -1,0 +1,197 @@
+@import url(//cdnjs.cloudflare.com/ajax/libs/font-awesome/4.2.0/css/font-awesome.min.css);
+
+@import url(http://fonts.googleapis.com/css?family=Roboto:400,100,100italic,300,300italic,400italic,500,500italic,700,700italic,900,900italic);
+@import url(https://fonts.googleapis.com/css?family=Lobster);
+
+$main-font-family: 'Roboto', 'Helvetica Nueu', sans-serif;
+$lobster-font-family: 'Lobster', serif;
+
+/* color scheme */
+$red: #FF0000;
+$dark-grey: rgb(51, 51, 51);
+$light-grey: rgb(241, 241, 241);
+
+$sky-blue: #1CA8DD;
+$blue: #0D66B6;
+
+body {
+  margin:0;
+  font-family: $main-font-family;
+  color: rgb(113, 113, 113);
+}
+
+h1 {
+  font-weight: 300;
+  text-align: center;
+  font-size: 40px;
+  letter-spacing: 3px;
+  text-shadow: 0px 1px 0px #AAA;
+  margin-top: 12;
+  font-family: $lobster-font-family;
+}
+
+h3 {
+  text-transform: lowercase;
+  color: $sky-blue;
+  font-weight: 300;
+  margin: 0;
+}
+
+nav {
+  display: block;
+  position: fixed;
+  background: #333;
+  height: 75px;
+  width: 100%;
+  box-shadow: 0 0 1px rgba(0,0,0,.15);
+  z-index: 100;
+}
+
+a {
+  color: #1ca8dd;
+  text-decoration: none;
+}
+
+a:not(.nohover):hover {
+  color: $blue;
+}
+
+section{
+  margin-top:40px;
+}
+
+.nav-inner {
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 2px;
+  position: relative;
+  color: white;
+}
+
+.container {
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 70px;
+}
+
+.section-header{
+  position: relative;
+  margin-left: 10px;
+  padding-bottom: 20px;
+  border-bottom: 1px dashed #CCCCCC;
+}
+
+//950 width -
+.section-icon {
+  padding-right:4px;
+}
+
+.section-content{
+  position: relative
+}
+
+$tablet: "(min-width: 768px) and (max-width: 1023px)";
+$desktop: "(min-width: 1024px)";
+
+@media #{$tablet} {
+  .container {
+      width: 720px;
+  }
+}
+
+@media #{$desktop} {
+  .container {
+      width: 950px;
+  }
+}
+
+/*Board Grid*/
+.board-columns {
+  margin: 0;
+  margin-left: 10px;
+  padding: 0;
+}
+
+$board-height : 136px;
+
+@mixin board-box($color) {
+  position: relative;
+  display: inline-block;
+  vertical-align: top;
+  height: $board-height;
+  width: 175px;
+  margin: 10px;
+  padding: 20px;
+  background: $color;
+  border-radius: 4.5px;
+  -webkit-box-shadow: 11px 13px 16px -5px rgba(0,0,0,0.28);
+  -moz-box-shadow: 11px 13px 16px -5px rgba(0,0,0,0.28);
+  box-shadow: 11px 13px 16px -5px rgba(0,0,0,0.28);
+  overflow: hidden;
+}
+
+.board-section {
+  @include board-box($light-grey)
+}
+
+.board-section-header {
+  margin-bottom: 10px;
+  font-size: 18px;
+  overflow: hidden;
+}
+
+.board-section-content {
+  font-size:15px;
+}
+
+.board-section-tack {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+}
+
+.board-section-tack:hover{
+  color: $red;
+}
+
+.create-board-section {
+  @include board-box($dark-grey)
+}
+
+.create-board {
+  text-align: center;
+  text-shadow: 1px 2px 2px rgba(10, 10, 10, 0.74);
+  margin-top: ($board-height / 2) - 12px; 
+}
+
+.pinned {
+ color: $red; 
+}
+
+/*
+.add-list-group{
+    float:right;
+}
+.add-list{
+    margin-bottom: 0;
+}
+
+
+.board-panel{
+    padding-left:20px;
+    margin-bottom:20px;
+}
+.board-title{
+    font-size:22px;
+}
+.card-title{
+    overflow:hidden;
+}
+.list-title{
+    margin: 0;
+}
+.list-card{
+    border-radius: 4px;
+    margin-bottom: 20px;
+}
+*/

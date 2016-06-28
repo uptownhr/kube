@@ -57,13 +57,12 @@ module.exports = function({ public_path, express_handler_path, layout_path, debu
       console.log('and: ' + layout_path)
     }
 
-    const state = {}
-    const renderString = ServerCompiler(ServerComponent, req.url, state)
+    const renderString = ServerCompiler(ServerComponent, req.url)
 
     const bundlePath = '/dist/bundle.js',
       stylePath = '/dist/styles.css'
 
-    const template = LayoutRender({bundlePath, stylePath, renderString, stateString: JSON.stringify(state)})
+    const template = LayoutRender({bundlePath, stylePath, renderString, stateString: 'undefined'})
 
     res.send(template)
   }
