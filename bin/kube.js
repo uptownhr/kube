@@ -151,4 +151,5 @@ function makeRC(path){
 
 function createSRC(path, boiler){
   fs.copySync( __dirname + `/boilerplate/${boiler}`, path)
+  console.log(boiler, 'boilerplate copied')
 }
