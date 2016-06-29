@@ -22,7 +22,7 @@ program.command('init [project-name]')
     const available_boilers = [ 'router', 'router-redux' ]
     const boiler = options.boiler || 'router'
 
-    if(!available_boilers.includes(options.boiler)){
+    if(!available_boilers.includes(boiler)){
       return console.log('Invalid boiler specified')
     }
 
