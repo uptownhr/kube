@@ -2,7 +2,7 @@ const fs = require('fs')
 
 module.exports = function({ public_path, express_handler_path, layout_path, debug, mount = false }){
   return function(req,res,next){
-    if(isAsset(public_path, req.url)) return next()
+    if(isAsset(public_path, req.originalUrl)) return next()
 
     /*
      handle server component cache
@@ -30,13 +30,13 @@ module.exports = function({ public_path, express_handler_path, layout_path, debu
         render: function(state){
           if(debug){
             console.log('debug: ', debug)
-            console.log('kube-ssr: rendering', req.url)
+            console.log('kube-ssr: rendering', req.originalUrl)
             console.log('using: ' + express_handler_path)
             console.log('and: ' + layout_path)
             console.log('state:', state)
           }
 
-          const renderString = ServerCompiler(ServerComponent, req.url, state)
+          const renderString = ServerCompiler(ServerComponent, req.originalUrl, state)
 
           const bundlePath = '/dist/bundle.js',
             stylePath = '/dist/styles.css'
@@ -52,12 +52,12 @@ module.exports = function({ public_path, express_handler_path, layout_path, debu
 
     if(debug){
       console.log('debug: ', debug)
-      console.log('kube-ssr: rendering', req.url)
+      console.log('kube-ssr: rendering', req.originalUrl)
       console.log('using: ' + express_handler_path)
       console.log('and: ' + layout_path)
     }
 
-    const renderString = ServerCompiler(ServerComponent, req.url)
+    const renderString = ServerCompiler(ServerComponent, req.originalUrl)
 
     const bundlePath = '/dist/bundle.js',
       stylePath = '/dist/styles.css'
@@ -71,7 +71,9 @@ module.exports = function({ public_path, express_handler_path, layout_path, debu
 function isAsset(public_path, url){
   if(url == '/') return false
 
-  const asset_path = public_path + url
+    let asset_path = public_path + url
+
+    if(asset_path.slice(-1) == '/') asset_path = asset_path + 'index.html'
 
   try{
     fs.lstatSync(asset_path)
