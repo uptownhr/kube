@@ -2,11 +2,11 @@ const webpack = require('webpack')
 const webpackDevMiddleware = require('webpack-dev-middleware')
 const hotMiddleware = require('webpack-hot-middleware')
 const kubeSSR = require('./kube-ssr-middleware')
-const webpack_config = require('../kube/webpack.config')
 const express = require('express')
 
 module.exports = function(options){
-  const { client_config, server_config } = webpack_config(options)
+  console.log(options)
+  const { client_config, server_config } = require(options.webpack_path)(options)
   const client_compiler = new webpack(client_config)
   const server_compiler = new webpack(server_config)
 

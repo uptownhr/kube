@@ -129,6 +129,7 @@ function up(){
       layout_path: path.resolve( `${kuberc.src_path}/layout.js` ),
       public_path: path.resolve( `${kuberc.public_path}` ),
       express_handler_path: path.resolve( `${kuberc.src_path}/express_handler.js`),
+      webpack_path: path.resolve( `${kuberc.src_path}/webpack.config.js`),
       debug: kuberc.debug
     }
 

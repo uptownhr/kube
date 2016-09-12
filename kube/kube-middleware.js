@@ -35,6 +35,7 @@ function make_options(kube_path, project_path, params){
     layout_path: path.resolve( `${options.src_path}/layout.js` ),
     public_path: path.resolve( `${options.public_path}` ),
     express_handler_path: path.resolve( `${options.src_path}/express_handler.js`),
+    webpack_path: path.resolve( `${options.src_path}/webpack.config.js`),
     debug: options.debug,
     mount: options.mount || false
   }
