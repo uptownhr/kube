@@ -1,4 +1,4 @@
-![Kube](https://cdn.rawgit.com/uptownhr/kube/master/src/containers/Home/cube.svg)
+![Kube](https://rawgit.com/uptownhr/kube/master/bin/boilerplate/router/containers/assets/cube.svg)
 
 # Kube
 Universal React Express middleware package. A universal react dev environment provided through `npm install`
